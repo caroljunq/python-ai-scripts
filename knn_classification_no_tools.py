@@ -19,9 +19,9 @@
 #
 # KNN - K Nearest Neighbors
 # KNN is an algorithm for applying classification approach. From one sample and a dataset training,the KNN determines
-# the distance (euclidian, manhatan, etc.) from the target sample to all samples in the training set. The second step is to get
-# the K neighbors nearest the sample (K smallest distances to the given point).
-# With the set of K nearest neighbors, the target sample is classified by a majority vote of its neighbors
+# the distance (euclidian, manhatan, etc.) from "no classified sample" to all samples in the training set. The second step is to get
+# the K neighbors nearest the "no classified sample"  (K smallest distances to the given point).
+# With the set of K nearest neighbors, the "no classified sample" is classified by a majority vote of its neighbors
 # (class most common among its k nearest neighbors).
 #
 #
