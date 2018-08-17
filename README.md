@@ -10,3 +10,4 @@ Machine Learning and Neural Networks python scripts (basic algorithms).
 
 ### Useful resources
 * Datasets - http://archive.ics.uci.edu/ml/datasets.html
+* Dataset = https://www.kaggle.com/datasets
