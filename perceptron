@@ -40,9 +40,24 @@ import random
 # test dataset
 from sklearn import datasets
 
-# Linear regression ??
+# Linear regression
 class KNNRegression:
-    def __init__(self,x,y,K=3):
-        self.n_amostras = len(x)
-        self.n_attrs = len(x[0])
-        self.x,self.y,self.K = x,y,K
+    # constructor
+    def __init__(self,inputs,outputs,learning_rate=0.1,epochs=1000,bias=-1):
+        self.data = inputs # samples for training
+        self.target = outputs # outputs for training
+        self.learning_rate = learning_rate
+        self.epochs = epochs # max number of interactions
+        self.bias = bias
+        self.total_samples = len(inputs) # the size of samples
+        self.n_attrs = len(inputs[0]) # number of attributes in a sample ("how many fields")
+        self.weights = [] # weights to adjustments
+
+    # training method
+    def train(self):
+
+        # começa aqui
+
+    # test algorithm with some sample
+    def operating(self):
+        #começa aqui
