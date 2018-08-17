@@ -35,12 +35,7 @@
 from sklearn import datasets
 # KNN Regression
 from sklearn.neighbors import KNeighborsRegressor
-# Split sets (training and testing)
-from sklearn.model_selection import train_test_split
-# package that plots graphs
-import matplotlib.pyplot as plt
-# package for scientific computing
-import numpy as np
+
 
 # dataset example
 # Details - https://www.cs.toronto.edu/~delve/data/boston/bostonDetail.html
