@@ -36,12 +36,24 @@
 # Required modules (python native)
 # math functions
 import math
+import random
 # test dataset
 from sklearn import datasets
 
 class KNNRegression:
     # constructor
-    # inputs = samples
-    # outputs  = target
-    # epochs = max of interactions
     def __init__(self,inputs,outputs,learning_rate=0.1,epochs=1000,bias=-1):
+        self.data = inputs # samples for training
+        self.target = outputs # outputs for training
+        self.learning_rate = learning_rate
+        self.epochs = epochs # max number of interactions
+        self.bias = bias
+        self.total_samples = len(inputs) # the size of samples
+        self.n_attrs = len(inputs[0]) # number of attributes in a sample ("how many fields")
+        self.weights = [] # weights to adjustments
+
+    def train(self):
+        # começa aqui
+
+    def operating(self):
+        #começa aqui
