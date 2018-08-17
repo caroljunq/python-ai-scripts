@@ -35,9 +35,6 @@ from sklearn import datasets
 # KNeighborsClassifier = knn algorithm/classifier in sklearn package
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.model_selection import train_test_split
-# package for plotting graphs
-import matplotlib.pyplot as plt
-
 
 # Load the Iris dataset
 # Details - http://archive.ics.uci.edu/ml/datasets/Iris
