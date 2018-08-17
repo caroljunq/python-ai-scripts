@@ -1,7 +1,7 @@
 # This algorithm is an implementation of KNN Classification using native modules from python
 # (exception sklearn module to get datasets)
-
-
+#
+#
 # Supervised Machine Learning
 # In Supervised Machine Learning algorithms, you have input variables (x) and output variables (y)
 # and you use an algorithm to learn the mapping function from the input to the output Y = f(x).
@@ -17,7 +17,7 @@
 #
 #
 #
-# KNN - K Nearest Neighbors
+# KNN - K Nearest Neighbors - Classification
 # KNN is an algorithm for applying classification approach. From one sample and a dataset training,the KNN determines
 # the distance (euclidian, manhatan, etc.) from "no classified sample" to all samples in the training set. The second step is to get
 # the K neighbors nearest the "no classified sample"  (K smallest distances to the given point).
