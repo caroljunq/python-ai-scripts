@@ -29,6 +29,7 @@
 # https://medium.com/simple-ai/classification-versus-regression-intro-to-machine-learning-5-5566efd4cb83
 # https://www.geeksforgeeks.org/regression-classification-supervised-machine-learning/
 # https://medium.com/@adi.bronshtein/a-quick-introduction-to-k-nearest-neighbors-algorithm-62214cea29c7
+# http://www.saedsayad.com/k_nearest_neighbors_reg.htm
 
 
 # Required modules (python native)
