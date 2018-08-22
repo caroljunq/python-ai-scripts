@@ -41,5 +41,48 @@
 # Required modules (python native)
 # math functions
 import math
+# generate random number
+import random
 # test dataset
 from sklearn import datasets
+
+# K_Means class
+class K_Means:
+    # constructor
+    def __init__(self,samples,K=2):
+        self.k = K # number of clusters
+        self.samples = samples # samples without output
+        self.n_samples = len(samples) # number of samples
+        self.n_attributes = len(samples[0]) # number of fields/attributes in each sample
+
+    # training method
+    def train(self):
+        centroids = []
+        # selecting random centroids from samples
+        for _ in range(self.k):
+            centroid = []
+            # choose a random sample from self.samples
+            # if one centroid is already choosen, a new one is choosen
+            while centroid in centroids or len(centroid) == 0:
+                centroid = random.choice(self.samples)
+
+
+
+
+# Load the Iris dataset
+# Details - http://archive.ics.uci.edu/ml/datasets/Iris
+# Attributes:
+# 1. sepal length in cm
+# 2. sepal width in cm
+# 3. petal length in cm
+# 4. petal width in cm
+# 5. class: (output/class/y)
+####-- Iris Setosa
+####-- Iris Versicolour
+####-- Iris Virginica
+iris_dataset = datasets.load_iris()
+
+x_train, y_train = iris_dataset.data,iris_dataset.target #
+
+k_means = K_Means(x_train,3)
+k_means.train()
