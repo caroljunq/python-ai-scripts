@@ -25,7 +25,7 @@
 # 1- Choose a number of groups (k);
 # 2- Define a centroid (point) for each cluster/group (randomly or using techniques);
 # 3- Assign each object to the group that has the closest centroid (ex: euclidean distance can be used);
-# 4- When all objects have been assigned, reclculate the positions of the k centroids (calculated as the average position
+# 4- When all objects have been assigned, recalculate the positions of the k centroids (calculated as the average position
 # of all points in one cluster)
 # 5- Repeat steps 3 and 4 until the centroids no longer move.
 # This algorithm  is sensiive to the initial randomly selected cluster centres.
@@ -46,6 +46,15 @@ import random
 # test dataset
 from sklearn import datasets
 
+def euclidean_distance(sample1,sample2):
+    # sample1, sample2
+    soma = 0
+    # get the number of attributes in one sample
+    for i in range(len(sample1)):
+        soma += math.pow(sample1[i] - sample2[i],2)
+    # return the distance between two points
+    return math.sqrt(soma)
+
 # K_Means class
 class K_Means:
     # constructor
@@ -57,15 +66,16 @@ class K_Means:
 
     # training method
     def train(self):
-        centroids = []
-        # selecting random centroids from samples
-        for _ in range(self.k):
-            centroid = []
-            # choose a random sample from self.samples
-            # if one centroid is already choosen, a new one is choosen
-            while centroid in centroids or len(centroid) == 0:
-                centroid = random.choice(self.samples)
-
+        # gets k initial centroids without repetition
+        centroids = random.sample(list(self.samples),self.k)
+        count = 0
+            # calculating the distances from each sample to each centroid
+        for sample in self.samples:
+            distances = []
+            for centroid in centroids:
+                distances.append(euclidean_distance(sample,centroid))
+            # selecting the closest centroid from one sample
+            cluster_index = distances.index(min(distances))
 
 
 
