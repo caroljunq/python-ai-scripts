@@ -48,35 +48,61 @@ from sklearn import datasets
 
 def euclidean_distance(sample1,sample2):
     # sample1, sample2
-    soma = 0
+    sum = 0
     # get the number of attributes in one sample
     for i in range(len(sample1)):
-        soma += math.pow(sample1[i] - sample2[i],2)
+        sum += math.pow(sample1[i] - sample2[i],2)
     # return the distance between two points
-    return math.sqrt(soma)
+    return math.sqrt(sum)
 
 # K_Means class
 class K_Means:
     # constructor
-    def __init__(self,samples,K=2):
+    def __init__(self,samples,K=2,iterations=100):
         self.k = K # number of clusters
         self.samples = samples # samples without output
         self.n_samples = len(samples) # number of samples
         self.n_attributes = len(samples[0]) # number of fields/attributes in each sample
+        self.max_iterations = iterations
 
     # training method
     def train(self):
-        # gets k initial centroids without repetition
+        # initiating clusters' dict
+        # each cluster is a list of index of samples in self.samples
+        clusters = {}
+        # getting k initial random centroids without repetition
         centroids = random.sample(list(self.samples),self.k)
-        count = 0
-            # calculating the distances from each sample to each centroid
-        for sample in self.samples:
-            distances = []
-            for centroid in centroids:
-                distances.append(euclidean_distance(sample,centroid))
-            # selecting the closest centroid from one sample
-            cluster_index = distances.index(min(distances))
-
+        prev_centroids = []
+        iter = 0
+        while iter < self.max_iterations:
+            clusters = {x: [] for x in range(self.k)}
+            for i in range(self.n_samples):
+                distances = []
+                # calculating the distances from each sample to each centroid
+                for centroid in centroids:
+                    # saving distances
+                    distances.append(euclidean_distance(self.samples[i],centroid))
+                # selecting the closest centroid from one sample
+                cluster_index = distances.index(min(distances))
+                # add index of a sample in the closest cluster
+                clusters[cluster_index].append(i)
+            # if the centroids from the last iteration are equal to the current centroids, the algorithm stops
+            if prev_centroids == centroids:
+                break
+            # if the algorithm does not stops, prev_clusters now is equal to the current one
+            prev_centroids = centroids
+            # new centroids initiating with 0
+            new_centroids = [[0 for _ in range(self.n_attributes)] for _ in range(self.k)]
+            # calculate new centroids from the mean of all elements in each cluster
+            for i in range(self.k):
+                # num of elements in the cluster
+                cluster_size = len(clusters[i])
+                for sample_index in clusters[i]:
+                    for attr_index in range(self.n_attributes):
+                        new_centroids[i][attr_index] += self.samples[sample_index][attr_index]
+                centroids[i] = [total/cluster_size for total in new_centroids[i]]
+            iter += 1
+        return clusters
 
 
 # Load the Iris dataset
@@ -94,5 +120,7 @@ iris_dataset = datasets.load_iris()
 
 x_train, y_train = iris_dataset.data,iris_dataset.target #
 
-k_means = K_Means(x_train,3)
+# in this case, you know there are 3 groups (Setosa, Versicolour, Virginica)
+k_means = K_Means(x_train,3,600)
+
 k_means.train()
