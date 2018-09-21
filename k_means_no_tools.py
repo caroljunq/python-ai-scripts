@@ -45,6 +45,7 @@ import math
 import random
 # test dataset
 from sklearn import datasets
+import numpy as np
 
 def euclidean_distance(sample1,sample2):
     # sample1, sample2
@@ -86,11 +87,11 @@ class K_Means:
                 cluster_index = distances.index(min(distances))
                 # add index of a sample in the closest cluster
                 clusters[cluster_index].append(i)
-            # if the centroids from the last iteration are equal to the current centroids, the algorithm stops
-            if prev_centroids == centroids:
-                break
+
             # if the algorithm does not stops, prev_clusters now is equal to the current one
-            prev_centroids = centroids
+            # centroids[:] is pass by value instead of reference, if you just use prev = centroids
+            # you're passing by reference, so prev will always be equal to centroids variable
+            prev_centroids = centroids[:]
             # new centroids initiating with 0
             new_centroids = [[0 for _ in range(self.n_attributes)] for _ in range(self.k)]
             # calculate new centroids from the mean of all elements in each cluster
@@ -102,6 +103,10 @@ class K_Means:
                         new_centroids[i][attr_index] += self.samples[sample_index][attr_index]
                 centroids[i] = [total/cluster_size for total in new_centroids[i]]
             iter += 1
+            # if the centroids from the last iteration are equal to the current centroids, the algorithm stops
+            # using numpy because one of these list are a numpay array
+            if np.array_equal(prev_centroids,centroids):
+                break
         return clusters
 
 
@@ -121,6 +126,6 @@ iris_dataset = datasets.load_iris()
 x_train, y_train = iris_dataset.data,iris_dataset.target #
 
 # in this case, you know there are 3 groups (Setosa, Versicolour, Virginica)
-k_means = K_Means(x_train,3,600)
+k_means = K_Means(x_train,3,100)
 
 k_means.train()
