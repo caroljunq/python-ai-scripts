@@ -6,6 +6,7 @@ Machine Learning and Neural Networks python scripts (basic algorithms).
 * Numpy
 * Sklearn
 * Matplotlib
+* Pandas
 * PyBrain
 
 ### Useful resources
