@@ -7,6 +7,7 @@ Machine Learning and Neural Networks python scripts (basic algorithms).
 * Sklearn
 * Matplotlib
 * PyBrain
+* TensorFlow
 
 ### Useful resources
 * Datasets - http://archive.ics.uci.edu/ml/datasets.html
