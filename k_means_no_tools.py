@@ -107,6 +107,8 @@ class K_Means:
             # using numpy because one of these list are a numpay array
             if np.array_equal(prev_centroids,centroids):
                 break
+        print(clusters)
+        print("\n\n")
         return clusters
 
 
@@ -129,3 +131,29 @@ x_train, y_train = iris_dataset.data,iris_dataset.target #
 k_means = K_Means(x_train,3,100)
 
 k_means.train()
+
+# Load Wine Dataset
+# Details - https://archive.ics.uci.edu/ml/datasets/wine
+# Attributes:
+# 1) Alcohol
+# 2) Malic acid
+# 3) Ash
+# 4) Alcalinity of ash
+# 5) Magnesium
+# 6) Total phenols
+# 7) Flavanoids
+# 8) Nonflavanoid phenols
+# 9) Proanthocyanins
+# 10)Color intensity
+# 11)Hue
+# 12)OD280/OD315 of diluted wines
+# 13)Proline
+## 3 classes
+wine_dataset = datasets.load_wine()
+
+x_wine, y_wine = wine_dataset.data, wine_dataset.target #
+
+# in this case, you know there are 3 class
+k_means_wine = K_Means(x_wine,3,250)
+
+k_means_wine.train()
